@@ -1,0 +1,34 @@
+resource "aws_db_instance" "{{ identifier | replace('-', '_') }}" {
+  identifier              = "{{ identifier }}"
+  engine                  = "{{ engine }}"
+  engine_version          = "{{ engine_version }}"
+  instance_class          = "{{ instance_class }}"
+  allocated_storage       = {{ allocated_storage }}
+  storage_type            = "{{ storage_type }}"
+  username                = "{{ username }}"
+  password                = "{{ password }}"
+  db_name                 = "{{ db_name }}"
+  vpc_security_group_ids  = ["${aws_security_group.{{ security_group | replace('-', '_') }}.id}"]
+  db_subnet_group_name    = aws_db_subnet_group.{{ subnet_group_name | replace('-', '_') }}.name
+  skip_final_snapshot     = true
+  publicly_accessible     = {{ publicly_accessible | lower }}
+
+  tags = {
+    Name = "{{ identifier }}"
+    {% for tag_key, tag_value in tags.items() %}
+    {{ tag_key }} = "{{ tag_value }}"
+    {% endfor %}
+  }
+}
+resource "aws_db_subnet_group" "{{ subnet_group_name | replace('-', '_') }}" {
+  name       = "{{ subnet_group_name }}"
+  subnet_ids = [
+    {% for subnet_id in subnet_ids %}
+    "{{ subnet_id }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+
+  tags = {
+    Name = "{{ subnet_group_name }}"
+  }
+}

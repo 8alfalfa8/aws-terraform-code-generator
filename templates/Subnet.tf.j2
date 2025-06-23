@@ -1,0 +1,13 @@
+resource "aws_subnet" "{{ subnet | replace('-', '_') }}" {
+  vpc_id                  = var.vpc_id
+  cidr_block              = "{{ cidr_block }}"
+  availability_zone       = "{{ az }}"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "{{ subnet }}"
+    {% for tag_key, tag_value in tags.items() %}
+    {{ tag_key }} = "{{ tag_value }}"
+    {% endfor %}
+  }
+}

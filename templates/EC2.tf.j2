@@ -1,0 +1,22 @@
+resource "aws_instance" "{{ instance_name | lower | replace('-', '_') }}" {
+  ami                    = "{{ ami }}"
+  instance_type          = "{{ instance_type }}"
+  key_name               = "{{ key_pair }}"
+  subnet_id              = aws_subnet.{{ subnet | replace('-', '_') }}.id
+  vpc_security_group_ids = [aws_security_group.{{ security_group | replace('-', '_') }}.id]
+  user_data              = <<-EOF
+{{ user_data }}
+EOF
+
+  root_block_device {
+    volume_size = {{ ebs_size }}
+    volume_type = "{{ ebs_type }}"
+  }
+
+  tags = {
+    Name = "{{ instance_name }}"
+    {% for tag_key, tag_value in tags.items() %}
+    {{ tag_key }} = "{{ tag_value }}"
+    {% endfor %}
+  }
+}

@@ -1,0 +1,7 @@
+output "{{ instance_name | lower | replace('-', '_') }}_id" {
+  value = aws_instance.{{ instance_name | lower | replace('-', '_') }}.id
+}
+
+output "{{ instance_name | lower | replace('-', '_') }}_public_ip" {
+  value = aws_instance.{{ instance_name | lower | replace('-', '_') }}.public_ip
+}
