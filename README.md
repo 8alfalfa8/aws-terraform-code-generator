@@ -66,7 +66,7 @@ aws-terraform-code-generator
     ├─ dev/                            ← ◆開発環境(Terraform)格納先
     │   ├─ all_resources.tf            ← 全体統合
     │   ├─ output.tf                   ← outputブロックのみ
-    │   └─ per_service/                ← サービス毎
+    │   └─ per_service/                ← サービス毎格納先
     │        ├─ ec2_resources.tf       ← EC2
     │        ├─ sg_resources.tf        ← セキュリティグループ
     │        ├─ subnet_resources.tf    ← サブネット
@@ -74,7 +74,7 @@ aws-terraform-code-generator
     ├─ stg/                            ← ◆検証環境(Terraform)格納先
     │   ├─ all_resources.tf            ← 全体統合
     │   ├─ output.tf                   ← outputブロックのみ
-    │   └─ per_service/                ← サービス毎
+    │   └─ per_service/                ← サービス毎格納先
     │        ├─ ec2_resources.tf       ← EC2
     │        ├─ sg_resources.tf        ← セキュリティグループ
     │        ├─ subnet_resources.tf    ← サブネット
@@ -82,7 +82,7 @@ aws-terraform-code-generator
     ├─ prd/                            ← ◆本番環境(Terraform)格納先
     │   ├─ all_resources.tf            ← 全体統合
     │   ├─ output.tf                   ← outputブロックのみ
-    │   └─ per_service/                ← サービス毎
+    │   └─ per_service/                ← サービス毎格納先
     │        ├─ ec2_resources.tf       ← EC2
     │        ├─ sg_resources.tf        ← セキュリティグループ
     │        ├─ subnet_resources.tf    ← サブネット
@@ -90,7 +90,7 @@ aws-terraform-code-generator
     └─ sby/                            ← ◆待機環境(Terraform)格納先
          ├─ all_resources.tf           ← 全体統合
          ├─ output.tf                  ← outputブロックのみ
-         └─ per_service/               ← サービス毎
+         └─ per_service/               ← サービス毎格納先
               ├─ ec2_resources.tf      ← EC2
               ├─ sg_resources.tf       ← セキュリティグループ
               ├─ subnet_resources.tf   ← サブネット
