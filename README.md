@@ -88,12 +88,12 @@ aws-terraform-code-generator
     │        ├─ subnet_resources.tf    ← サブネット
     │        └─ …
     └─ sby/                            ← ◆待機環境(Terraform)格納先
-         ├─ all_resources.tf            ← 全体統合
-         ├─ output.tf                   ← outputブロックのみ
-         └─ per_service/                ← サービス毎
-              ├─ ec2_resources.tf       ← EC2
-              ├─ sg_resources.tf        ← セキュリティグループ
-              ├─ subnet_resources.tf    ← サブネット
+         ├─ all_resources.tf           ← 全体統合
+         ├─ output.tf                  ← outputブロックのみ
+         └─ per_service/               ← サービス毎
+              ├─ ec2_resources.tf      ← EC2
+              ├─ sg_resources.tf       ← セキュリティグループ
+              ├─ subnet_resources.tf   ← サブネット
               └─ …
 ```
 
