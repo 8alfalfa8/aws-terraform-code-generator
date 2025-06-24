@@ -135,6 +135,7 @@ Colorful株式会社
 〒151-0051
 東京都渋谷区千駄ヶ谷3-51-10
 PORTAL POINT HARAJUKU 607
+info@colorful-inc.jp
 03-6555-7276
 ```
 
