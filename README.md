@@ -126,6 +126,13 @@ python prod.py        # 商用非公開
 * GitHub Actionsとの連携により、インフラ構築の全工程をCI/CDパイプラインに統合し、**より効率的かつ安定した運用体制**を実現します。
 * また、対応クラウドをAWSだけでなく**GCPやAzureにも拡張**し、**マルチクラウド環境における柔軟なインフラ管理**を目指してまいります。
 
+---
+
+## 📝 【資料】
+
+* [IaCに関する資料](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/01_IaC)
+* [CICDに関する資料](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/02_CICD)
+
 ## ⚠️ 自己責任に関する注意事項（Self Responsibility Disclaimer）
 
 本ツール（Terraform Code Generator from Excel）は、ユーザーの利便性向上を目的として無償で提供されていますが、**ご利用に際してはすべて自己責任でお願いいたします。**
