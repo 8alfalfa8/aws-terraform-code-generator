@@ -130,8 +130,8 @@ python prod.py        # 商用非公開
 
 ## 📝 【資料】
 
-* [IaCに関する資料](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/01_IaC)
-* [CICDに関する資料](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/02_CICD)
+* [IaCに関する技術](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/01_IaC)
+* [CICDに関する技術](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/02_CICD)
 
 ## ⚠️ 自己責任に関する注意事項（Self Responsibility Disclaimer）
 
