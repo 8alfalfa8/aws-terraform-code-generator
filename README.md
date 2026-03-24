@@ -1,7 +1,36 @@
 
 # 🛠️Terraform Code Generator from Excel(for AWS) 
 
-このリポジトリは、Excelで定義されたAWSインフラ構成情報(パラメータシート)から、Terraformコードを自動生成するためのツールです。
+本リポジトリは、Excelで定義されたAWSインフラ構成情報(パラメータシート)から、Terraformコードを自動生成するためのツールです。
+
+---
+
+## 閲覧準備：Markdown Viewer のインストール
+
+本リポジトリのドキュメント（Markdown記法）をブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能 **「Markdown Viewer」** のインストールと設定を推奨しています。
+
+### 1. インストール
+お使いのブラウザに合わせて、以下のリンクからインストールしてください。
+
+* **Chrome / Edge**: [Markdown Viewer (Chrome Web Store)](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcedbflnpeebnljnphakjden)
+* **Firefox**: [Markdown Viewer (Firefox Add-ons)](https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer/)
+
+### 2. ローカルファイルへのアクセス許可（必須）
+PC上のファイルをブラウザで開くために、以下の設定を行ってください。
+
+1. ブラウザの拡張機能アイコン（パズルマーク）から **[Markdown Viewer]** > **[詳細]**（または拡張機能の管理）を開きます。
+2. **「ファイルの URL へのアクセスを許可する」** を **ON** にします。
+
+### 3. Mermaid（図解）の有効化
+ドキュメント内のチャートを表示するために必要です。
+
+1. Markdown Viewer のオプション（⚙アイコン）を開きます。
+2. 左メニューの **[Compiler]** を選択します。
+3. **[Mermaid]** の項目にチェックを入れます。
+
+設定完了後、この `README.md` ファイルをブラウザにドラッグ＆ドロップすることで、整形されたレイアウトで閲覧可能になります。
+
+---
 
 ## ✅ 特長（特徴）
 
@@ -11,91 +40,7 @@
 * **ソースコード・テンプレートを全て公開** 
   - Pythonスクリプトおよび入出力テンプレートはすべて公開されており、用途に応じて自由に修正・再利用可能です。
 
-## 📦 構成ファイル
-
-### 📦 無料公開版
-
-```
-aws-terraform-code-generator
-├─ free.py                             ← Excelを読み取りTerraformコードを生成するPythonスクリプト
-├─ input.xlsx                          ← Excelインフラ詳細設計書（パラメータシート）
-├─ LICENSE                             ← ライセンス
-├─ README                              ← 説明
-├─ requirements.txt                    ← 必須パッケージ一覧
-├─ .gitignore                          ← キャッシュ・生成ファイル除外用
-├─doc/                                 ← ドキュメント
-│  └─ …
-├─templates/                           ← Terraformのテンプレート（Jinja2形式）
-│  ├─ EC2.tf.j2                        ← EC2
-│  ├─ SG.tf.j2                         ← セキュリティグループ
-│  ├─ Subnet.tf                        ← サブネット
-│  └─ …
-│
-└─output/                              ← 自動生成されるTerraformファイルの格納先
-    ├─ all_resources.tf                ← 全シート統合
-    ├─ output.tf                       ← outputブロックのみ
-    └─ per_service/                    ← サービス毎
-         ├─ ec2_resources.tf           ← EC2
-         ├─ sg_resources.tf            ← セキュリティグループ
-         ├─ subnet_resources.tf        ← サブネット
-         └─ …
-
-```
-
-### 📦 商用非公開版（環境分離）
-
-```
-aws-terraform-code-generator
-├─ prod.py                             ← Excelを読み取りTerraformコードを生成するPythonスクリプト
-├─ input.xlsx                          ← Excelインフラ詳細設計書（パラメータシート）
-├─ LICENSE                             ← ライセンス
-├─ README                              ← 説明
-├─ requirements.txt                    ← 必須パッケージ一覧
-├─ .gitignore                          ← キャッシュ・生成ファイル除外用
-├─doc/                                 ← ドキュメント
-│  └─ …
-├─templates/                           ← Terraformのテンプレート（Jinja2形式）
-│  ├─ EC2.tf.j2                        ← EC2
-│  ├─ SG.tf.j2                         ← セキュリティグループ
-│  ├─ Subnet.tf                        ← サブネット
-│  └─ …
-│
-└─output/                              ← 自動生成されるTerraformファイルの格納先
-    ├─ all_resources.tf                ← 全シート統合
-    ├─ output.tf                       ← outputブロックのみ
-    ├─ dev/                            ← ◆開発環境(Terraform)格納先
-    │   ├─ all_resources.tf            ← 全体統合
-    │   ├─ output.tf                   ← outputブロックのみ
-    │   └─ per_service/                ← サービス毎格納先
-    │        ├─ ec2_resources.tf       ← EC2
-    │        ├─ sg_resources.tf        ← セキュリティグループ
-    │        ├─ subnet_resources.tf    ← サブネット
-    │        └─ …
-    ├─ stg/                            ← ◆検証環境(Terraform)格納先
-    │   ├─ all_resources.tf            ← 全体統合
-    │   ├─ output.tf                   ← outputブロックのみ
-    │   └─ per_service/                ← サービス毎格納先
-    │        ├─ ec2_resources.tf       ← EC2
-    │        ├─ sg_resources.tf        ← セキュリティグループ
-    │        ├─ subnet_resources.tf    ← サブネット
-    │        └─ …
-    ├─ prd/                            ← ◆本番環境(Terraform)格納先
-    │   ├─ all_resources.tf            ← 全体統合
-    │   ├─ output.tf                   ← outputブロックのみ
-    │   └─ per_service/                ← サービス毎格納先
-    │        ├─ ec2_resources.tf       ← EC2
-    │        ├─ sg_resources.tf        ← セキュリティグループ
-    │        ├─ subnet_resources.tf    ← サブネット
-    │        └─ …
-    └─ sby/                            ← ◆待機環境(Terraform)格納先
-         ├─ all_resources.tf           ← 全体統合
-         ├─ output.tf                  ← outputブロックのみ
-         └─ per_service/               ← サービス毎格納先
-              ├─ ec2_resources.tf      ← EC2
-              ├─ sg_resources.tf       ← セキュリティグループ
-              ├─ subnet_resources.tf   ← サブネット
-              └─ …
-```
+---
 
 ## 📙 使用方法
 
@@ -120,6 +65,8 @@ python prod.py        # 商用非公開
 
 ```
 
+---
+
 ## 🚀 今後の展望
 
 * 今後は、**設計から構築（IaC）、さらにテスト・検証（セキュリティおよび監査）までを自動化**し、インフラ運用の効率化と品質向上を図ります。
@@ -132,6 +79,8 @@ python prod.py        # 商用非公開
 
 * [IaCに関する技術](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/01_IaC)
 * [CICDに関する技術](https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/02_CICD)
+
+---
 
 ## ⚠️ 自己責任に関する注意事項（Self Responsibility Disclaimer）
 
@@ -147,6 +96,8 @@ python prod.py        # 商用非公開
 * **バージョン管理やCI/CD環境での段階的適用**。
 * 商用環境では**本番前のテスト環境での事前検証**。
 
+---
+
 ## 🤝 商談歓迎
 
 非公開版のご利用や環境構築のご支援をご希望の方は、下記までご連絡ください。
@@ -160,8 +111,12 @@ info@colorful-inc.jp
 ```
 https://colorful-inc.jp/
 
+---
+
 ## 📝 ライセンス
 
 本リポジトリは [MIT ライセンス](./LICENSE) のもとで公開されています。
+
+---
 
 
