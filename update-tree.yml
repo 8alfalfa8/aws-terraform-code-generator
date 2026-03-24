@@ -1,0 +1,88 @@
+name: Update Directory Tree with Links
+
+on:
+  push:
+    branches:
+      - main  # masterの場合はここを master に変更
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Linked Directory Tree
+        run: |
+          # tree.txtを初期化
+          # echo '```' > tree.txt
+          echo '## プロジェクト構成  ' > tree.txt
+          
+          python3 -c "
+          import os
+          import urllib.parse
+
+          # カウント用変数
+          stats = {'dirs': 0, 'files': 0}
+
+          def generate_tree(path, f, indent=''):
+              try:
+                  items = sorted(os.listdir(path))
+              except PermissionError:
+                  return
+                  
+              exclude = ['.git', '.gitignore', '.nojekyll', '.github', 'tree.txt', 'new_readme.md']
+              items = [i for i in items if i not in exclude]
+              
+              for i, item in enumerate(items):
+                  full_path = os.path.join(path, item)
+                  rel_path = os.path.relpath(full_path, '.')
+                  url_path = urllib.parse.quote(rel_path)
+                  
+                  connector = '├── ' if i < len(items) - 1 else '└── '
+                  line_end = '  ' 
+                  
+                  if os.path.isdir(full_path):
+                      stats['dirs'] += 1
+                      f.write(f'{indent}{connector}{item}/{line_end}\n')
+                      generate_tree(full_path, f, indent + ('│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' if i < len(items) - 1 else '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'))
+                  else:
+                      stats['files'] += 1
+                      f.write(f'{indent}{connector}[{item}]({url_path}){line_end}\n')
+
+          with open('tree.txt', 'a', encoding='utf-8') as f:
+              generate_tree('.', f)
+              # 最後に統計情報を書き込む
+              f.write('\n')
+              f.write(f'{stats[\"dirs\"]} directories, {stats[\"files\"]} files  \n')
+          "
+          # echo '```' >> tree.txt
+
+      - name: Update README
+        run: |
+          S_TAG=$(echo "PCEtLSBTVEFSVF9UUkVFIC0tPg==" | base64 -d)
+          E_TAG=$(echo "PCEtLSBFTkRfVFJFRSAtLT4=" | base64 -d)
+
+          touch README.md
+          if ! grep -q "$S_TAG" README.md; then
+            echo -e "\n$S_TAG\n$E_TAG" >> README.md
+          fi
+          
+          # 【重要】引数を使わず、一時ファイルに分割して結合する
+          # 1. 開始タグまでを抽出
+          sed -n "1,/$S_TAG/p" README.md > top.md
+          # 2. 終了タグ以降を抽出
+          sed -n "/$E_TAG/,\$p" README.md > bottom.md
+          
+          # 3. すべてを結合（top + tree.txt + bottom）
+          cat top.md tree.txt bottom.md > README.md
+          
+          # 不要なファイルを削除
+          rm top.md tree.txt bottom.md
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: update directory tree (fix argument list too long) [skip ci]"
