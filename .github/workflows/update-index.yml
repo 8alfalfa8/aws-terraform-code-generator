@@ -1,0 +1,72 @@
+name: Update index.html from README
+
+on:
+  push:
+    paths:
+      - 'README.md'
+  workflow_dispatch:
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name: Convert README.md to index.html
+        run: |
+          # Pandocで基本のHTMLを生成
+          # --mathjax フラグで数式記法を保護します
+          pandoc README.md -s --mathjax \
+          --metadata title="プロジェクト　ドキュメント" \
+          -o index.html
+
+      - name: Inject Scripts (MathJax Config & Mermaid)
+        run: |
+          # MathJaxが $ や \( を正しく解釈するための設定スクリプトを作成
+          cat <<EOF > scripts.html
+          <script>
+            window.MathJax = {
+              tex: {
+                inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+                displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+                processEscapes: true
+              },
+              options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+              }
+            };
+          </script>
+          <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          <script type="module">
+            import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+            mermaid.initialize({
+              startOnLoad: true,
+              theme: 'default'
+            });
+          </script>
+          <style>
+            /* 見栄えを良くするための最小限のスタイル */
+            body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; color: #333; }
+            pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 5px; }
+            code { font-family: monospace; background: #eee; padding: 0.2rem 0.4rem; border-radius: 3px; }
+          </style>
+          EOF
+
+          # index.htmlの</body>直前にスクリプトとスタイルを挿入
+          sed -i '/<\/body>/e cat scripts.html' index.html
+
+      - name: Commit and Push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          # 変更がある場合のみコミット
+          git diff --quiet && git diff --staged --quiet || (git commit -m "docs: update index.html from README.md" && git push)
