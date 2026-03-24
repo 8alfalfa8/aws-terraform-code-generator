@@ -1,9 +1,406 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0;URL='https://8alfalfa8.github.io/aws-terraform-code-generator/README.md'" />
-  </head>
-  <body>
-    <p>リダイレクト中... <a href="https://8alfalfa8.github.io/aws-terraform-code-generator/README.md">READMEはこちら</a></p>
-  </body>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プロジェクト　ドキュメント</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プロジェクト　ドキュメント</h1>
+</header>
+<h1 id="terraform-code-generator-from-excelfor-aws">🛠️Terraform Code
+Generator from Excel(for AWS)</h1>
+<p>本リポジトリは、Excelで定義されたAWSインフラ構成情報(パラメータシート)から、Terraformコードを自動生成するためのツールです。</p>
+<hr />
+<h2 id="閲覧準備markdown-viewer-のインストール">閲覧準備：Markdown
+Viewer のインストール</h2>
+<p>本リポジトリのドキュメント（Markdown記法）をブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能
+<strong>「Markdown Viewer」</strong>
+のインストールと設定を推奨しています。</p>
+<h3 id="インストール">1. インストール</h3>
+<p>お使いのブラウザに合わせて、以下のリンクからインストールしてください。</p>
+<ul>
+<li><strong>Chrome / Edge</strong>: <a
+href="https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcedbflnpeebnljnphakjden">Markdown
+Viewer (Chrome Web Store)</a></li>
+<li><strong>Firefox</strong>: <a
+href="https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer/">Markdown
+Viewer (Firefox Add-ons)</a></li>
+</ul>
+<h3 id="ローカルファイルへのアクセス許可必須">2.
+ローカルファイルへのアクセス許可（必須）</h3>
+<p>PC上のファイルをブラウザで開くために、以下の設定を行ってください。</p>
+<ol type="1">
+<li>ブラウザの拡張機能アイコン（パズルマーク）から <strong>[Markdown
+Viewer]</strong> &gt;
+<strong>[詳細]</strong>（または拡張機能の管理）を開きます。</li>
+<li><strong>「ファイルの URL へのアクセスを許可する」</strong> を
+<strong>ON</strong> にします。</li>
+</ol>
+<h3 id="図解mermaidと数式latexの有効化">3.
+図解（Mermaid）と数式（LaTeX）の有効化</h3>
+<p>ドキュメント内のチャートを表示するために必要です。</p>
+<ol type="1">
+<li>Markdown Viewer のオプション（⚙アイコン）を開きます。</li>
+<li>左メニューの <strong>[Compiler]</strong> を選択します。</li>
+<li>以下の2項目にチェックを入れてください。
+<ul>
+<li><strong>[Mermaid]</strong>:
+チャートや図解を表示するために必要です。</li>
+<li><strong>[MathJax]</strong>: <span
+class="math inline">\(E=mc^2\)</span>
+などの数式（LaTeX）を表示するために必要です。</li>
+</ul></li>
+</ol>
+<p>設定完了後、この <code>README.md</code>
+ファイルをブラウザにドラッグ＆ドロップすることで、整形されたレイアウトで閲覧可能になります。</p>
+<hr />
+<h2 id="本ツールの特長特徴">✅ 本ツールの特長（特徴）</h2>
+<ul>
+<li><strong>Excel定義書からTerraformコードを一括生成</strong>
+<ul>
+<li>インフラ構成をExcelで管理し、その内容をもとにTerraformコードを自動生成できます。</li>
+</ul></li>
+<li><strong>ソースコード・テンプレートを全て公開</strong>
+<ul>
+<li>Pythonスクリプトおよび入出力テンプレートはすべて公開されており、用途に応じて自由に修正・再利用可能です。</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="使用方法">📙 使用方法</h2>
+<h3 id="環境構築">1. 環境構築</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/8alfalfa8/aws-terraform-code-generator.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> aws-terraform-code-generator</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 仮想環境 (任意)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv venv</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 必要パッケージのインストール</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div>
+<h3 id="使用">2. 使用</h3>
+<pre><code>python free.py
+python prod.py        # 商用非公開
+</code></pre>
+<hr />
+<h2 id="今後の展望">🚀 今後の展望</h2>
+<ul>
+<li>今後は、<strong>設計から構築（IaC）、さらにテスト・検証（セキュリティおよび監査）までを自動化</strong>し、インフラ運用の効率化と品質向上を図ります。</li>
+<li>GitHub
+Actionsとの連携により、インフラ構築の全工程をCI/CDパイプラインに統合し、<strong>より効率的かつ安定した運用体制</strong>を実現します。</li>
+<li>また、対応クラウドをAWSだけでなく<strong>GCPやAzureにも拡張</strong>し、<strong>マルチクラウド環境における柔軟なインフラ管理</strong>を目指してまいります。</li>
+</ul>
+<hr />
+<h2 id="資料">📝 【資料】</h2>
+<ul>
+<li><a
+href="https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/01_IaC">IaCに関する技術</a></li>
+<li><a
+href="https://github.com/8alfalfa8/Tec-Doc/tree/main/04_%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9/02_CICD">CICDに関する技術</a></li>
+</ul>
+<hr />
+<h2 id="自己責任に関する注意事項self-responsibility-disclaimer">⚠️
+自己責任に関する注意事項（Self Responsibility Disclaimer）</h2>
+<p>本ツール（Terraform Code Generator from
+Excel）は、ユーザーの利便性向上を目的として無償で提供されていますが、<strong>ご利用に際してはすべて自己責任でお願いいたします。</strong></p>
+<ul>
+<li>本ツールを利用して生成されたコードの<strong>正確性・完全性・安全性</strong>について、開発者および関連団体は一切の保証を致しません。</li>
+<li>ユーザーが本ツールを使用することによって生じた<strong>いかなる損害・不具合・システム障害等に対しても、開発者および関連団体は責任を負いません</strong>。</li>
+<li>実際の運用環境に適用する際は、<strong>必ずご自身の責任において十分な検証およびレビューを実施してください。</strong></li>
+</ul>
+<p>安全な利用のために、以下を推奨します：</p>
+<ul>
+<li>生成されたTerraformコードの<strong>内容を確認した上での適用</strong>。</li>
+<li><strong>バージョン管理やCI/CD環境での段階的適用</strong>。</li>
+<li>商用環境では<strong>本番前のテスト環境での事前検証</strong>。</li>
+</ul>
+<hr />
+<h2 id="商談歓迎">🤝 商談歓迎</h2>
+<p>非公開版のご利用や環境構築のご支援をご希望の方は、下記までご連絡ください。</p>
+<pre><code>Colorful株式会社
+
+〒151-0051
+東京都渋谷区千駄ヶ谷3-51-10
+PORTAL POINT HARAJUKU 607
+info@colorful-inc.jp</code></pre>
+<p>https://colorful-inc.jp/</p>
+<hr />
+<h2 id="ライセンス">📝 ライセンス</h2>
+<p>本リポジトリは <a href="./LICENSE">MIT ライセンス</a>
+のもとで公開されています。</p>
+<hr />
+<!-- START_TREE -->
+<h2 id="プロジェクト構成">プロジェクト構成</h2>
+<p>├── <a href="LICENSE">LICENSE</a><br />
+├── <a href="README.md">README.md</a><br />
+├── <a href="free.py">free.py</a><br />
+├── <a href="free_input.xlsx">free_input.xlsx</a><br />
+├── <a href="index.html">index.html</a><br />
+├── <a href="requirements.txt">requirements.txt</a><br />
+├── templates/<br />
+│         ├── <a href="templates/EC2.tf.j2">EC2.tf.j2</a><br />
+│         ├── <a href="templates/RDS.tf.j2">RDS.tf.j2</a><br />
+│         ├── <a href="templates/SG.tf.j2">SG.tf.j2</a><br />
+│         ├── <a href="templates/Subnet.tf.j2">Subnet.tf.j2</a><br />
+│         └── <a href="templates/output.tf.j2">output.tf.j2</a><br />
+└── ‎docs/<br />
+          └── <a
+href="%E2%80%8Edocs/%EF%BC%88AWS%E5%AF%BE%E5%BF%9C%EF%BC%89Terraform%E5%8B%95%E4%BD%9C%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89.md">（AWS対応）Terraform動作環境構築.md</a></p>
+<p>2 directories, 12 files<br />
+<!-- END_TREE --></p>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['2807', '2807'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      ignoreHtmlClass: 'tex2jax_ignore',
+      processHtmlClass: 'tex2jax_process'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default'
+  });
+</script>
+<style>
+  /* 見栄えを良くするための最小限のスタイル */
+  body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; color: #333; }
+  pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 5px; }
+  code { font-family: monospace; background: #eee; padding: 0.2rem 0.4rem; border-radius: 3px; }
+</style>
+</body>
 </html>
