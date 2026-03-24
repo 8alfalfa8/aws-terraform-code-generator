@@ -123,21 +123,5 @@ https://colorful-inc.jp/
 
 <!-- START_TREE -->
 ## プロジェクト構成  
-├── [.nojekyll.txt](.nojekyll.txt)  
-├── [LICENSE](LICENSE)  
-├── [README.md](README.md)  
-├── [free.py](free.py)  
-├── [free_input.xlsx](free_input.xlsx)  
-├── [index.html](index.html)  
-├── [requirements.txt](requirements.txt)  
-├── templates/  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [EC2.tf.j2](templates/EC2.tf.j2)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [RDS.tf.j2](templates/RDS.tf.j2)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [SG.tf.j2](templates/SG.tf.j2)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [Subnet.tf.j2](templates/Subnet.tf.j2)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [output.tf.j2](templates/output.tf.j2)  
-└── ‎docs/  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [AWS対応Terraform動作環境構築.md](%E2%80%8Edocs/AWS%E5%AF%BE%E5%BF%9CTerraform%E5%8B%95%E4%BD%9C%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89.md)  
-
-2 directories, 13 files  
+ 
 <!-- END_TREE -->
