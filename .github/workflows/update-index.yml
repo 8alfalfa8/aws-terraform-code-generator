@@ -24,7 +24,7 @@ jobs:
           # Pandocで基本のHTMLを生成
           # --mathjax フラグで数式記法を保護します
           pandoc README.md -s --mathjax \
-          --metadata title="プロジェクト　ドキュメント" \
+          --metadata title="プロジェクト概要" \
           -o index.html
 
       - name: Inject Scripts (MathJax Config & Mermaid)
