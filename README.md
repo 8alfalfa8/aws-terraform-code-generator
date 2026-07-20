@@ -7,35 +7,6 @@
 
 ---
 
-## 閲覧準備：Markdown Viewer のインストール
-
-本リポジトリのドキュメント（Markdown記法）をブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能 **「Markdown Viewer」** のインストールと設定を推奨しています。
-
-### 1. インストール
-お使いのブラウザに合わせて、以下のリンクからインストールしてください。
-
-* **Chrome / Edge**: [Markdown Viewer (Chrome Web Store)](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcedbflnpeebnljnphakjden)
-* **Firefox**: [Markdown Viewer (Firefox Add-ons)](https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer/)
-
-### 2. ローカルファイルへのアクセス許可（必須）
-PC上のファイルをブラウザで開くために、以下の設定を行ってください。
-
-1. ブラウザの拡張機能アイコン（パズルマーク）から **[Markdown Viewer]** > **[詳細]**（または拡張機能の管理）を開きます。
-2. **「ファイルの URL へのアクセスを許可する」** を **ON** にします。
-
-### 3. 図解（Mermaid）と数式（LaTeX）の有効化
-ドキュメント内のチャートを表示するために必要です。
-
-1. Markdown Viewer のオプション（⚙アイコン）を開きます。
-2. 左メニューの **[Compiler]** を選択します。
-3. 以下の2項目にチェックを入れてください。
-   - **[Mermaid]**: チャートや図解を表示するために必要です。
-   - **[MathJax]**: $E=mc^2$ などの数式（LaTeX）を表示するために必要です。
-
-設定完了後、この `README.md` ファイルをブラウザにドラッグ＆ドロップすることで、整形されたレイアウトで閲覧可能になります。
-
----
-
 ## ✅ 本ツールの特長（特徴）
 
 * **Excel定義書からTerraformコードを一括生成** 
